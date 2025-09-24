@@ -19,7 +19,7 @@ namespace LabWorkGPT1
             {
                 desktop.MainWindow = new LoginWindow
                 {
-                    DataContext = new LoginViewModel(),
+                    DataContext = new LoginViewModel((IClassicDesktopStyleApplicationLifetime)ApplicationLifetime),
                 };
             }
 

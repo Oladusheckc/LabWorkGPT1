@@ -14,7 +14,7 @@
         Height="400"
         CanResize="False">
 
-    <StackPanel Margin="0,20,0,20">
+    <StackPanel Margin="20">
         <TextBlock Width="200"
                    HorizontalAlignment="Center">Login</TextBlock>
         <TextBox Width="200"

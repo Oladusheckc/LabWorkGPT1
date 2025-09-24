@@ -29,5 +29,12 @@
     <Compile Update="Views\LoginWindow.axaml.cs">
       <DependentUpon>LoginWindow.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\NotesWindow.axaml.cs">
+      <DependentUpon>NotesWindow.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

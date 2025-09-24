@@ -1,4 +1,8 @@
-﻿using ReactiveUI;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using LabWorkGPT1.Views;
+using ReactiveUI;
 using System.Reactive;
 using System.Security.AccessControl;
 
@@ -35,7 +39,7 @@ namespace LabWorkGPT1.ViewModels
 
         public ReactiveCommand<Unit, Unit> LoginCommand { get; }
 
-        public LoginViewModel()
+        public LoginViewModel(IClassicDesktopStyleApplicationLifetime desktop)
         {
             this.WhenAnyValue(x => x.Username, x => x.Password,
                               (user, pass) => !string.IsNullOrWhiteSpace(user) && !string.IsNullOrWhiteSpace(pass))
@@ -47,6 +51,14 @@ namespace LabWorkGPT1.ViewModels
                 {
                     LoginResult = "Успешный вход!";
                     // Здесь можно переключить окно или вызвать навигацию
+                    Window cW = desktop.MainWindow;
+                    desktop.MainWindow = new NotesWindow
+                    {
+                        DataContext = new NotesViewModel(),
+                    };
+                    desktop.MainWindow.Show();
+                    cW.Close();
+
                 }
                 else
                 {

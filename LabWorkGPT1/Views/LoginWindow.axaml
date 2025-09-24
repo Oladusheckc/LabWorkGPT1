@@ -17,18 +17,23 @@
         <TextBox Width="200"
                  Watermark="Enter login"
                  HorizontalAlignment="Center"
-                 Margin="0,10,0,0"></TextBox>
+                 Margin="0,10,0,0"
+                 Text="{Binding Username,Mode=TwoWay}"></TextBox>
+
         <TextBlock Width="200"
                    HorizontalAlignment="Center"
                    Margin="0,30,0,0">Password</TextBlock>
         <TextBox Width="200"
                  Watermark="Enter password"
                  HorizontalAlignment="Center"
-                 Margin="0,10,0,0"></TextBox>
+                 Margin="0,10,0,0"
+                 Text="{Binding Password,Mode=TwoWay}"></TextBox>
+
         <Button Width ="100"
                 HorizontalAlignment="Center"
                 Margin="0,30,0,0"
                 HorizontalContentAlignment="Center"
+                IsEnabled="{Binding CanLogin}"
                 >Login!</Button>
     </StackPanel>
 </Window>

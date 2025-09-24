@@ -1,4 +1,5 @@
 ﻿using ReactiveUI;
+using System.Reactive;
 using System.Security.AccessControl;
 
 namespace LabWorkGPT1.ViewModels
@@ -9,6 +10,7 @@ namespace LabWorkGPT1.ViewModels
         private string _rightPassword = "222";
         private string _username;
         private string _password;
+        private string _loginResult;
 
         private readonly ObservableAsPropertyHelper<bool> _canLogin;
 
@@ -24,13 +26,33 @@ namespace LabWorkGPT1.ViewModels
             set => this.RaiseAndSetIfChanged(ref _password, value);
         }
 
+        public string LoginResult
+        {
+            get => _loginResult;
+            private set => this.RaiseAndSetIfChanged(ref _loginResult, value);
+        }
         public bool CanLogin => _canLogin.Value;
+
+        public ReactiveCommand<Unit, Unit> LoginCommand { get; }
 
         public LoginViewModel()
         {
             this.WhenAnyValue(x => x.Username, x => x.Password,
                               (user, pass) => !string.IsNullOrWhiteSpace(user) && !string.IsNullOrWhiteSpace(pass))
                 .ToProperty(this, x => x.CanLogin, out _canLogin);
+            LoginCommand = ReactiveCommand.Create(
+            () =>
+            {
+                if (Username == _rightLogin && Password == _rightPassword)
+                {
+                    LoginResult = "Успешный вход!";
+                    // Здесь можно переключить окно или вызвать навигацию
+                }
+                else
+                {
+                    LoginResult = "Неверный логин или пароль";
+                }
+            });
         }
     }
 }
